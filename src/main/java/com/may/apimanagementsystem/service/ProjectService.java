@@ -1,6 +1,7 @@
 package com.may.apimanagementsystem.service;
 
 import com.github.pagehelper.PageHelper;
+import com.may.apimanagementsystem.constant.ExceptionMessage;
 import com.may.apimanagementsystem.dao.ProjectMapper;
 import com.may.apimanagementsystem.dao.UserProjectMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
@@ -17,49 +18,33 @@ import static com.may.apimanagementsystem.constant.ExceptionMessage.*;
 
 @Service
 public class ProjectService {
-
     @Resource
     private ProjectMapper projectMapper;
     @Resource
     private UserProjectMapper userProjectMapper;
 
-    public List<Project> getList(int pageNum, int pageSize, int userId) throws Exception {
-        PageHelper.startPage(pageNum, pageSize);
-        List<Project> projectList = projectMapper.getProjectList(userId);
-        return projectList;
-    }
-
-
-    public boolean addProject(Project project) {
-        boolean flag;
+    public void addProject(Project project) {
         checkAddProjectParameter(project);
-        boolean result = projectMapper.insertProject(project);
-        if (!result) {
+        if (!projectMapper.insertProject(project)) {
             throw new ServerException();
         }
-        flag = true;
-        return flag;
     }
 
-    public boolean updateProject(Project project) {
-        boolean flag;
+    public void updateProject(Project project) {
+
         checkUpdateProjectParameter(project);
-        boolean result = projectMapper.updateProject(project);
-        if (!result) {
+        if (!projectMapper.updateProject(project)) {
             throw new ServerException();
         }
-        flag = true;
-        return flag;
+
     }
 
-    public boolean removeProject(int projectId) {
-        boolean flag;
-        boolean result = projectMapper.deleteProject(projectId) || userProjectMapper.deleteUserProject(projectId);
-        if (!result) {
+    public void removeProject(int projectId) {
+
+        if (!projectMapper.deleteProject(projectId)) {
             throw new ServerException();
         }
-        flag = true;
-        return flag;
+
     }
 
     public Project getProjectByProjectId(int projectId) {
@@ -69,8 +54,13 @@ public class ProjectService {
         return project;
     }
 
+    public Project getProjectByProjectName(String projectName) {
+        Project project = projectMapper.findProjectByProjectName(projectName);
+        Objects.requireNonNull(project);
+        return project;
+    }
+
     private void checkAddProjectParameter(Project project) {
-        System.out.println(project.getProjectName());
         if (project.getProjectName() == null)
             throw new ParameterException(PARAMETER_CANNOT_NULL);
         checkProjectName(project.getProjectName());
@@ -80,6 +70,11 @@ public class ProjectService {
     private void checkProjectName(String projectName) {
         if (projectName.length() > 20)
             throw new ParameterException(PROJECT_NAME_IS_TOO_LONG);
+        Project project = projectMapper.findProjectByProjectName(projectName);
+        if (project != null) {
+            throw new ParameterException(ExceptionMessage.DOUBLE_TEAM_NAME);
+        }
+
     }
 
     private void checkProjectDescription(String projectDescription) {

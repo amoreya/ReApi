@@ -54,7 +54,6 @@ public class ProjectController {
 
 
     /*团队项目*/
-
     @DeleteMapping("team/{projectId}")
     public ResponseEntity<TeamProject> deleteTeamproject(@PathVariable int projectId) {
         teamProjectServise.removeTeamProject(projectId);

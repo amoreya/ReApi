@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,6 +27,8 @@ public class TeamMemberServise {
 
     public void addTeamMerber(TeamMember teamMember) {
         checkAddTeanMember(teamMember);
+        LocalDateTime time = LocalDateTime.now();
+        teamMember.setJoinTime(time);
         if (!teamMemberMapper.insertTeamMember(teamMember)) {
             throw new ServerException();
         }

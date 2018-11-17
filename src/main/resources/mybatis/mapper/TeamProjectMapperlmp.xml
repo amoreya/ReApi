@@ -27,7 +27,7 @@
         FROM project_info
         WHERE project_info.project_id IN
         (SELECT project_team_ref.project_id FROM project_team_ref WHERE project_team_ref.team_id=#{teamId}
-        AND project_team_ref.del_flag='0')
+        AND project_info.del_flag='0')
     </select>
 
     <delete id="deleteTeamProject" parameterType="java.lang.Integer">
