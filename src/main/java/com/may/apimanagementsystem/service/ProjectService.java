@@ -70,7 +70,7 @@ public class ProjectService {
     private void checkProjectName(String projectName) {
         if (projectName.length() > 20)
             throw new ParameterException(PROJECT_NAME_IS_TOO_LONG);
-        Project project = projectMapper.findProjectByProjectName(projectName);
+        Project project = getProjectByProjectName(projectName);
         if (project != null) {
             throw new ParameterException(ExceptionMessage.DOUBLE_TEAM_NAME);
         }

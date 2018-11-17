@@ -35,9 +35,7 @@
             <if test="interfaceName!=null">
                 interface_name=#{interfaceName},
             </if>
-            <if test="description != null">
                 description=#{description},
-            </if>
             <if test="method != null">
                 method=#{method},
             </if>
@@ -55,6 +53,12 @@
         SELECT <include refid="interface_columns"/>
         FROM interface_info
         WHERE interface_id=#{interfaceId} AND del_flag = '0'
+    </select>
+
+    <select id="findInterfaceByInterfaceName" parameterType="java.lang.String" resultMap="interface">
+        SELECT <include refid="interface_columns"/>
+        FROM interface_info
+        WHERE interface_name=#{interfaceName} AND del_flag = '0'
     </select>
 
     <select id="getInterfaceList" parameterType="java.lang.Integer" resultMap="interface">

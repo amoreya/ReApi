@@ -22,14 +22,15 @@ public class InterfaceController {
 
     @PostMapping
     public ResponseEntity<Interfaces> addInterface(Interfaces interfaces) {
+        System.out.println(interfaces.getInterfaceName());
         interfaceService.addInterface(interfaces);
-        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, interfaces);
     }
 
     @GetMapping("projectInterface")
-    public ResponseEntity<List<Interfaces>> showInterface(int pageNum, int pageSize, int projectId) throws Exception {
+    public ResponseEntity<List<Interfaces>> showInterface(int projectId)  {
         List<Interfaces> interfaces = null;
-        interfaces = interfaceService.getInterfaces(pageNum, pageSize, projectId);
+        interfaces = interfaceService.getInterfaces(projectId);
         return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, interfaces);
     }
 

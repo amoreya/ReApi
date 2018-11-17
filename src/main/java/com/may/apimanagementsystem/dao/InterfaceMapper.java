@@ -18,4 +18,6 @@ public interface InterfaceMapper {
     List<Interfaces> getInterfaceList(int projectId);
 
     Interfaces findInterfaceByInterfaceId(int interfaceId);
+
+    Interfaces findInterfaceByInterfaceName(String interfaceName);
 }

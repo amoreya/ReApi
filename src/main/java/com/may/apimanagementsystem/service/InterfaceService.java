@@ -1,6 +1,7 @@
 package com.may.apimanagementsystem.service;
 
 import com.github.pagehelper.PageHelper;
+import com.may.apimanagementsystem.constant.ExceptionMessage;
 import com.may.apimanagementsystem.dao.InterfaceMapper;
 import com.may.apimanagementsystem.exception.ParameterException;
 import com.may.apimanagementsystem.exception.ResourceNotFoundException;
@@ -20,36 +21,28 @@ public class InterfaceService {
     @Resource
     private InterfaceMapper interfaceMapper;
 
-    public List<Interfaces> getInterfaces(int pageNum, int pageSize, int projectId) throws Exception {
-        PageHelper.startPage(pageNum, pageSize);
+    public List<Interfaces> getInterfaces(int projectId){
         List<Interfaces> interfaceList = interfaceMapper.getInterfaceList(projectId);
         return interfaceList;
     }
 
-    public boolean addInterface(Interfaces interfaces) {
-        boolean flag = false;
+    public void addInterface(Interfaces interfaces) {
         checkAddInterfaceParameter(interfaces);
-        boolean result = interfaceMapper.insertInterface(interfaces);
-        if(!result) {
+        if (interfaceMapper.insertInterface(interfaces)) {
             throw new ServerException();
         }
-        flag = true;
-        return flag;
     }
 
-    public boolean updateInterface(Interfaces interfaces) {
-        boolean flag = false;
+    public void updateInterface(Interfaces interfaces) {
+
         checkUpdateInterfaceParameter(interfaces);
-        boolean result = interfaceMapper.updateInterface(interfaces);
-        if(!result) {
+        if (!interfaceMapper.updateInterface(interfaces)) {
             throw new ServerException();
         }
-        flag =  true;
-        return flag;
     }
 
     private void checkUpdateInterfaceParameter(Interfaces interfaces) {
-        if(interfaces.getInterfaceName() != null && interfaces.getDescription() !=null) {
+        if(interfaces.getInterfaceName() != null ) {
             checkInterfaceName(interfaces.getInterfaceName());
             checkInterfaceDescription(interfaces.getDescription());
         }else{
@@ -57,27 +50,30 @@ public class InterfaceService {
         }
     }
 
-    public boolean removeInterface(int interfaceId) {
-        boolean flag = false;
-        boolean result = interfaceMapper.deleteInterface(interfaceId);
-        if(!result) {
+    public void removeInterface(int interfaceId) {
+
+
+        if (!interfaceMapper.deleteInterface(interfaceId)) {
             throw new ServerException();
         }
-        flag = true;
-        return flag;
+
     }
 
     public Interfaces getInterfaceByInterfaceId(int interfaceId) {
         Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceId(interfaceId);
-//        Objects.requireNonNull(interfaces);
-        if(interfaces == null) {
-            throw new ResourceNotFoundException(NOT_FIND_OBJECT);
-        }
+         Objects.requireNonNull(interfaces);
+        return interfaces;
+    }
+    public Interfaces getInterfaceByInterfaceName(String interfaceName){
+        Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceName(interfaceName);
+        Objects.requireNonNull(interfaces);
         return interfaces;
     }
 
     private void checkAddInterfaceParameter(Interfaces interfaces){
-        if(interfaces.getInterfaceName() != null && interfaces.getDescription() !=null) {
+        System.out.println(interfaces.getInterfaceName());
+        if(interfaces.getInterfaceName() != null &&interfaces.getJson()!=null&&interfaces.getMethod()
+        !=null&&interfaces.getUrl()!=null && interfaces.getProjectId()!=0) {
             checkInterfaceName(interfaces.getInterfaceName());
             checkInterfaceDescription(interfaces.getDescription());
         }else{
@@ -89,6 +85,9 @@ public class InterfaceService {
         if (interfaceName.length() > 20) {
             throw new ParameterException(INTERFACE_NAME_IS_TOO_LONG);
         }
+        if (getInterfaceByInterfaceName(interfaceName)!= null) {
+            throw new ParameterException(ExceptionMessage.DOUBLE_TEAM_NAME);
+        }
     }
 
     private void checkInterfaceDescription(String projectDescription){
@@ -96,17 +95,6 @@ public class InterfaceService {
             throw new ParameterException(INTERFACE_DESCRIPTION_IS_TOO_LONG);
         }
     }
-
-//    private void checkUpdateProjectParameter(Interfaces interfaces){
-//        if(interfaces.getInterfaceName() != null){
-//            checkInterfaceName(interfaces.getInterfaceName());
-//        }
-//        if(interfaces.getDescription() != null){
-//            checkInterfaceDescription(interfaces.getDescription());
-//        }
-//    }
-
-
 
 //    public String downloadInterface(HttpServletRequest request, HttpServletResponse response) {
 //        String fileName = "aim_test.txt";// 设置文件名，根据业务需要替换成要下载的文件名
