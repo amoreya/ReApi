@@ -14,6 +14,8 @@ import javax.annotation.Resource;
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.may.apimanagementsystem.constant.ExceptionMessage.*;
 
@@ -29,30 +31,26 @@ public class InterfaceService {
     }
 
     public void addInterface(Interfaces interfaces) {
-       checkAddInterfaceParameter(interfaces);
+        if (!StringUtils.isNotBlank(interfaces.getInterfaceName()) || !StringUtils.isNotBlank(interfaces.getJson()) || !StringUtils.isNotBlank(interfaces.getMethod()) || !StringUtils.isNotBlank(interfaces.getUrl()) || interfaces.getProjectId() == 0)
+            throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
+        checkInterfaceName(interfaces.getInterfaceName());
         if (!interfaceMapper.insertInterface(interfaces)) {
             throw new ServerException();
         }
+
     }
 
     public void updateInterface(Interfaces interfaces) {
-        checkUpdateInterfaceParameter(interfaces);
+        if (!StringUtils.isNotBlank(interfaces.getInterfaceName()) || !StringUtils.isNotBlank(interfaces.getJson()) || !StringUtils.isNotBlank(interfaces.getMethod()) || !StringUtils.isNotBlank(interfaces.getUrl()) )
+            throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
+        checkInterfaceName(interfaces.getInterfaceName());
         if (!interfaceMapper.updateInterface(interfaces)) {
             throw new ServerException();
         }
     }
 
-    private void checkUpdateInterfaceParameter(Interfaces interfaces) {
-        if (interfaces.getInterfaceName() != null) {
-            checkInterfaceName(interfaces.getInterfaceName());
-            //checkInterfaceDescription(interfaces.getDescription());
-        } else {
-            throw new ParameterException(PARAMETER_CANNOT_NULL);
-        }
-    }
 
     public void removeInterface(int interfaceId) {
-
 
         if (!interfaceMapper.deleteInterface(interfaceId)) {
             throw new ServerException();
@@ -62,21 +60,13 @@ public class InterfaceService {
 
     public Interfaces getInterfaceByInterfaceId(int interfaceId) {
         Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceId(interfaceId);
-       // Objects.requireNonNull(interfaces);
         return interfaces;
     }
 
 
     public Interfaces getInterfacesByInterfaceName(String interfaceName) {
         Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceName(interfaceName);
-        //Objects.requireNonNull(interfaces);
         return interfaces;
-    }
-    private void checkAddInterfaceParameter(Interfaces interfaces) {
-        if ( !StringUtils.isNotBlank(interfaces.getInterfaceName())||!StringUtils.isNotBlank(interfaces.getJson()) || !StringUtils.isNotBlank(interfaces.getMethod())||  !StringUtils.isNotBlank(interfaces.getUrl()) || interfaces.getProjectId() == 0)
-            throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
-
-          checkInterfaceName(interfaces.getInterfaceName());
     }
 
 
@@ -88,9 +78,23 @@ public class InterfaceService {
         }
     }
 
+    public Interfaces getInterface(String url){
+
+        Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceUrl(url);
+        return interfaces;
+    }
 
 
+    public static String replaceBlank(String str) {
+        String dest = "";
+        if (str != null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");
+            Matcher m = p.matcher(str);
+            dest = m.replaceAll("");
+        }
+        return dest;
 
+    }
 //    public String downloadInterface(HttpServletRequest request, HttpServletResponse response) {
 //        String fileName = "aim_test.txt";// 设置文件名，根据业务需要替换成要下载的文件名
 //        if (fileName != null) {

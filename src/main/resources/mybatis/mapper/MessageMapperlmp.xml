@@ -13,7 +13,7 @@
     </resultMap>
 
     <sql id="message_columns">
-        message_id, user_id, del_flag, read_flag, send_user_id, team_id,user_name
+        message_id, user_id, del_flag, read_flag, send_user_id,team_id,user_name
     </sql>
 
 

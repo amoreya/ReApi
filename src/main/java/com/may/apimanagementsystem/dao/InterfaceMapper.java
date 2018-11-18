@@ -20,4 +20,7 @@ public interface InterfaceMapper {
     Interfaces findInterfaceByInterfaceId(int interfaceId);
 
     Interfaces findInterfaceByInterfaceName(String interfaceName);
+
+    Interfaces findInterfaceByInterfaceUrl(String url);
+
 }

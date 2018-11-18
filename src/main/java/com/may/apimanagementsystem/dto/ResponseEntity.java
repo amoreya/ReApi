@@ -4,6 +4,7 @@ public class ResponseEntity<T>{
     private int status;
     private String message;
     private T data;
+    private String method;
 
     public ResponseEntity(int status, String message, T data){
         this.status = status;
