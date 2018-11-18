@@ -9,22 +9,24 @@
         <result property="readFlag" column="read_flag"/>
         <result property="sendUserId" column="send_user_id"/>
         <result property="teamId" column="team_id"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="message_columns">
-        message_id, user_id, del_flag, read_flag, send_user_id, team_id
+        message_id, user_id, del_flag, read_flag, send_user_id, team_id,user_name
     </sql>
 
 
     <insert id="insertMessage" parameterType="com.may.apimanagementsystem.po.Message" keyProperty="messageId"
             useGeneratedKeys="true">
-        INSERT INTO message (user_id, send_user_id, team_id)
-        VALUES (#{userId}, #{sendUserId}, #{teamId})
+        INSERT INTO message (user_id, send_user_id, team_id,user_name)
+        VALUES (#{userId}, #{sendUserId}, #{teamId},#{userName})
     </insert>
 
     <select id="selectMessages" parameterType="java.lang.Integer" resultMap="message">
         SELECT
         <include refid="message_columns"/>
+
         FROM message
         WHERE user_id=#{userId} AND del_flag = '0'
     </select>

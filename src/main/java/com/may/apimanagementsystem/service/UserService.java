@@ -30,6 +30,8 @@ public class UserService {
     public User checkUser(User user) {
         User getUser = userMapper.findUserByUserName(user.getUserName());
         Objects.requireNonNull(getUser, USERNAME_NOT_EXIST);
+        if(getUser==null)
+            throw new   ParameterException(   USERNAME_NOT_EXIST);
         if (!user.getPassword().equals(getUser.getPassword()))
             throw new ParameterException(PASSWORD_WRONG);
         return getUser;

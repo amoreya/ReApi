@@ -21,13 +21,19 @@ public class MessageServise {
     private MessageMapper messageMapper;
     @Autowired
     private UserMapper userMapper;
-
+    @Autowired
+    private UserService userService;
 
     public void inviteAddMessage(Message message) {
 
         message.setSendUserId(teamMapper.findTeamByTeamId(message.getTeamId()).getCreateuserId());
+        message.setUserName(userService.getUserByUserId( message.getSendUserId()).getUserName());
+        System.out.println(message.getUserName());
         if (!messageMapper.insertMessage(message)) {
             throw new ServerException();
+        }
+        else{
+            System.out.println("cuole");
         }
     }
 
@@ -46,7 +52,7 @@ public class MessageServise {
 
     public Message rdMyMessage(int messageId) {
         Message message = messageMapper.readMyMessage(messageId);
-        Objects.requireNonNull(message);
+       // Objects.requireNonNull(message);
         return message;
     }
 

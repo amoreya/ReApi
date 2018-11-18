@@ -21,6 +21,7 @@ public class MessageController {
 
     @PostMapping("invite")
     public ResponseEntity<Message> inviteAddmessage(Message message) {
+
         messageServise.inviteAddMessage(message);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
@@ -45,6 +46,7 @@ public class MessageController {
 
     @GetMapping("userMessage")
     public ResponseEntity<List<Message>> showMyMessages(int userId) {
+        System.out.println(userId);
         List<Message> messages = messageServise.selectMyMessages(userId);
         return new ResponseEntity<>(200, SUCCESS, messages);
     }

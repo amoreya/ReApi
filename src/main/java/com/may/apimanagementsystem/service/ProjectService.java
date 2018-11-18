@@ -56,20 +56,21 @@ public class ProjectService {
 
     public Project getProjectByProjectName(String projectName) {
         Project project = projectMapper.findProjectByProjectName(projectName);
-        Objects.requireNonNull(project);
+        System.out.println(project+projectName);
+
+
         return project;
     }
 
     private void checkAddProjectParameter(Project project) {
         if (project.getProjectName() == null)
             throw new ParameterException(PARAMETER_CANNOT_NULL);
+
         checkProjectName(project.getProjectName());
         checkProjectDescription(project.getDescription());
     }
 
     private void checkProjectName(String projectName) {
-        if (projectName.length() > 20)
-            throw new ParameterException(PROJECT_NAME_IS_TOO_LONG);
         Project project = getProjectByProjectName(projectName);
         if (project != null) {
             throw new ParameterException(ExceptionMessage.DOUBLE_TEAM_NAME);

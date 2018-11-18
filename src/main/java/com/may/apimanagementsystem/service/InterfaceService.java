@@ -62,21 +62,21 @@ public class InterfaceService {
 
     public Interfaces getInterfaceByInterfaceId(int interfaceId) {
         Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceId(interfaceId);
-        Objects.requireNonNull(interfaces);
+       // Objects.requireNonNull(interfaces);
         return interfaces;
     }
 
 
     public Interfaces getInterfacesByInterfaceName(String interfaceName) {
         Interfaces interfaces = interfaceMapper.findInterfaceByInterfaceName(interfaceName);
-        Objects.requireNonNull(interfaces);
+        //Objects.requireNonNull(interfaces);
         return interfaces;
     }
     private void checkAddInterfaceParameter(Interfaces interfaces) {
         if ( !StringUtils.isNotBlank(interfaces.getInterfaceName())||!StringUtils.isNotBlank(interfaces.getJson()) || !StringUtils.isNotBlank(interfaces.getMethod())||  !StringUtils.isNotBlank(interfaces.getUrl()) || interfaces.getProjectId() == 0)
             throw new ParameterException(ExceptionMessage.PARAMETER_CANNOT_NULL);
 
-          //  checkInterfaceName(interfaces.getInterfaceName());
+          checkInterfaceName(interfaces.getInterfaceName());
     }
 
 
