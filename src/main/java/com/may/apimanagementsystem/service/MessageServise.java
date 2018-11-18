@@ -54,9 +54,6 @@ public class MessageServise {
     public List<Message> selectMyMessages(int userId) {
 
         List<Message> messages = messageMapper.selectMessages(userId);
-        for (int i = 0; i < messages.size(); i++) {
-            messages.get(i).setUserName(userMapper.findUserByUserId(2).getUserName());
-        }
         return messages;
     }
 }

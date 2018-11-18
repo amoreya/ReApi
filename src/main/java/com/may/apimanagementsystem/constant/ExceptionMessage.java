@@ -29,5 +29,5 @@ public class ExceptionMessage {
     /*teamMember*/
     public static final String TEAM_NOT_EXIST="该团队不存在";
 
-
+    public static final String DOUBLE_INTERFACE_NAME = "项目名已经被注册过了";
 }

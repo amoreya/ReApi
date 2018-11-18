@@ -22,7 +22,6 @@ public class InterfaceController {
 
     @PostMapping
     public ResponseEntity<Interfaces> addInterface(Interfaces interfaces) {
-        System.out.println(interfaces.getInterfaceName());
         interfaceService.addInterface(interfaces);
         return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, interfaces);
     }
