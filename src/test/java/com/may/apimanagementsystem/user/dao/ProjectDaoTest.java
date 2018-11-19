@@ -32,11 +32,7 @@ public class ProjectDaoTest {
         project.setAddress("www.test.com");
     }
 
-    @Test
-    public void getUserProjectTest(){
-        List<Project> project = projectMapper.getProjectList(1000);
-        assertEquals(0, project.size());
-    }
+
 
     @Test
     public void deleteProjectTest(){

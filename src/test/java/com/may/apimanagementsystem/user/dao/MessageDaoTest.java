@@ -39,7 +39,7 @@ public class MessageDaoTest {
     }
 
     @Test
-    @Rollback
+    //@Rollback
     public void inviteInsertMessageTest()
     {
         message.setUserId(1000);

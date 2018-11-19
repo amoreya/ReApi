@@ -13,7 +13,6 @@ CREATE TABLE `interface_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 DROP TABLE IF EXISTS `message`;
-
 CREATE TABLE `message` (
   `message_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -21,6 +20,7 @@ CREATE TABLE `message` (
   `read_flag` tinyint(4) DEFAULT '0',
   `send_user_id` int(10) unsigned NOT NULL,
   `team_id` int(10) unsigned NOT NULL,
+  `user_name` varchar(255) NOT NULL,
   PRIMARY KEY (`message_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
