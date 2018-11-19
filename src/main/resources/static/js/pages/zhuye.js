@@ -7,7 +7,7 @@ function ajax(){
 	$.ajax({
         type: 'get',
         dataType: 'json',
-        url: 'http://125.81.59.65:8081/ApiManagementSystem/project/user',
+        url: 'http://localhost:8081/ApiManagementSystem/project/user',
         data: {
             "userId":userId,
         },
@@ -52,7 +52,7 @@ function ajax2(){
 	$.ajax({
         type: 'get',
         dataType: 'json',
-        url: 'http://125.81.59.65:8081/ApiManagementSystem/team/userTeam',
+        url: 'http://localhost:8081/ApiManagementSystem/team/userTeam',
         data: {
             "userId":userId,
         },

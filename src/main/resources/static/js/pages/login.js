@@ -43,7 +43,7 @@ function x(){
  		$.ajax({
         	type: 'post',
         	dataType: 'json',
-        	url: 'http:/125.81.59.65:8081/ApiManagementSystem/user/login',
+        	url: 'http://localhost:8081/ApiManagementSystem/user/login',
         	data: {
             	"userName":username,
 				"password":password,

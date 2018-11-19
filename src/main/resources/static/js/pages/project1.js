@@ -25,7 +25,7 @@ function ajax(){
     $.ajax({
         type:"get",
         dataType:"json",
-        url:'http://125.81.59.65:8081/ApiManagementSystem/interface/projectInterface',
+        url:'http://localhost:8081/ApiManagementSystem/interface/projectInterface',
         data:{
             "projectId":projectId,
         },
@@ -70,15 +70,12 @@ function lay(backdata){
         layui.each(thisData, function(index, item1){
         var interfaceId = item1.interfaceId;
         var url = item1.url;
-        var json1 = item1.json;
-        console.log(json);
-           console.log(item1);
                 arr.push('<tr>');
                 arr.push('<td>' + interfaceId+ '</td>');
                 arr.push('<td>' + item1.interfaceName+ '</td>');
                 arr.push('<td>' + item1.method+ '</td>');
                 arr.push('<td>');
-                arr.push('<a href="javascript:void(0)" style="color:#0090FF;" onclick=json('+'"'+url+'"'+ ')>'+url+'</a>');
+                arr.push('<a href="javascript:void(0)" style="color:#0090FF;" onclick=json('+'"'+url+'"'+')>'+url+'</a>');
                 arr.push('</td>');
                 // arr.push('<td><a href="project_details_init.html?id='+item1+'" class="templatemo-edit-btn">详情</a></td>');
                 arr.push('<td><button class="templatemo-edit-btn" onclick=jump2(' +interfaceId + ')>查看' +
@@ -99,7 +96,7 @@ function del_shop(interfaceId){//删除商品
     $.ajax({
         type:"delete",
         dataType:"json",
-        url:"http://125.81.59.65:8081/ApiManagementSystem/interface/"+interfaceId,
+        url:"http://localhost:8081/ApiManagementSystem/interface/"+interfaceId,
         success:function(result){
             var backdata = result.data
             if(result.status==200){
@@ -111,15 +108,15 @@ function del_shop(interfaceId){//删除商品
         },
     })
 }
-function json(url,json){
+function json(url){
     sessionStorage.setItem("url",url);
-    sessionStorage.setItem("json",json);
+    // sessionStorage.setItem("json",json1);
     window.location.href="arp.html";
 
 }
 function jump2(interfaceId){
     sessionStorage.setItem('interfaceId', interfaceId);
-    console.log(interfaceId);
+    // console.log(interfaceId);
     window.location.href="changeAPI.html";
 
 

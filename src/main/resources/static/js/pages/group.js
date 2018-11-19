@@ -91,7 +91,7 @@ function addp(){
 	$.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'http://125.81.59.65:8081/ApiManagementSystem/project',
+        url: 'http://localhost:8081/ApiManagementSystem/project',
         data:{
             "projectName":name3,
             "address":1111,
@@ -105,7 +105,7 @@ function addp(){
                 $.ajax({
         			type: 'post',
         			dataType: 'json',
-        			url: 'http://125.81.59.65:8081/ApiManagementSystem/project/team',
+        			url: 'http://localhost:8081/ApiManagementSystem/project/team',
         			data: {
         				"projectId":back,
         				"teamId":tId,
@@ -147,7 +147,7 @@ function ajax(){
 	$.ajax({
         type: 'get',
        	dataType: 'json',
-        url: 'http://125.81.59.65:8081/ApiManagementSystem/project/team',
+        url: 'http://localhost:8081/ApiManagementSystem/project/team',
         data: {
         	"teamId":tId,
         },
@@ -158,9 +158,7 @@ function ajax(){
                     document.getElementById('biuuu_city_list').innerHTML="暂时没有团队项目，请创建".fontcolor("#666");
                 }
                 else{
-
                     var backdata = data.data;
-                       console.log(backdata);
                     lay(backdata);
                 }
 			}
@@ -214,7 +212,7 @@ function lay(backdata){
             arr.push('</span>')
             arr.push('</a>');
             arr.push('</div>');
-            arr.push('<button class="btn btn-info" id="btn" style = "margin-top: 40px;margin-right: 20px;margin-left: 25px;font-size: 0.6em;" onclick="pencil('+projectId+')">查看接口' +
+            arr.push('<button class="btn btn-info" id="btn" style = "margin-top: 40px;margin-right: 20px;margin-left: 25px;font-size: 0.6em;" onclick=pencil('+projectId+","+'"'+projectName+'"'+","+'"'+description+'"'+')>查看接口' +
                     '</button>');
 
             arr.push('</div>');
@@ -230,8 +228,8 @@ function lay(backdata){
 
 } );
 }
-function pencil(projectId){
-    getgroupId(projectId);
+function pencil(projectId,projectName,description){
+     getgroupId(projectId,projectName,description);
     window.location.href='project1.html';
 }
     //part3-2请求删除数据
@@ -241,12 +239,11 @@ function trash(projectName,projectId){      
             return false;  
         }
         else{  
-            // console.log(projectId)
             function remove(){
                 $.ajax({
                     type: 'delete',
                     dataType: 'json',
-                    url: 'http://125.81.59.65:8081/ApiManagementSystem/project/'+projectId,
+                    url: 'http://localhost:8081/ApiManagementSystem/project/'+projectId,
                      contentType:"application/json;charset=utf-8",
                     success: function ( data ) {
                         location.reload(true);
@@ -341,7 +338,7 @@ function show1(projectId,projectName,description){
             $.ajax({
                 type: 'PUT',
                 dataType: 'json',
-                url: 'http://125.81.59.65:8081/ApiManagementSystem/project/'+projectId,
+                url: 'http://localhost:8081/ApiManagementSystem/project/'+projectId,
                  contentType:"application/json;charset=utf-8",
                 data: {
                     "projectId":projectId,
@@ -396,17 +393,7 @@ function aaa(projectName,description){
     item[0].innerHTML = projectName;
     item[1].innerHTML = description;
 }
-function getProjectId(projectId,projectName,description,address){
-    var projectId = projectId;
-    var projectName = projectName;
-    var description = description;
-    var address = address;
-    sessionStorage.setItem('address', address);
-    sessionStorage.setItem('p', projectId);
-    sessionStorage.setItem('N', projectName);
-    sessionStorage.setItem('d', description);
-    console.log(projectId,description)
-}
+
 
 function addMember(){
     var Idiv=document.getElementById('member');
@@ -466,7 +453,7 @@ function addMember(){
             $.ajax({
                 type: 'get',
                 dataType: 'json',
-                url:'http://125.81.59.65:8081/ApiManagementSystem/user/userName',
+                url:'http://localhost:8081/ApiManagementSystem/user/userName',
                 data: {
                     "userName":memberName,
                 },
@@ -477,7 +464,7 @@ function addMember(){
                         $.ajax({
                             type: 'post',
                             dataType: 'json',
-                            url:'http://125.81.59.65:8081/ApiManagementSystem/message/invite',
+                            url:'http://localhost:8081/ApiManagementSystem/message/invite',
                             data: {
                             "userId":MemberId,
                             "teamId":tId,
@@ -522,7 +509,7 @@ function member(){
 	$.ajax({
 		type:"GET",
 		dataType:"json",
-		url:'http://125.81.59.65:8081/ApiManagementSystem/team/teamMember',
+		url:'http://localhost:8081/ApiManagementSystem/team/teamMember',
 		data: {
             "teamId":tId,
         },
@@ -592,7 +579,7 @@ function del(userId){
     $.ajax({
         type:"GET",
         dataType:"json",
-        url:'http://125.81.59.65:8081/ApiManagementSystem/team/teamMember',
+        url:'http://localhost:8081/ApiManagementSystem/team/teamMember',
         data: {
             "teamId":tId,
             "userId":userId,
