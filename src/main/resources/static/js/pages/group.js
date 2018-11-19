@@ -91,7 +91,7 @@ function addp(){
 	$.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'http://localhost:8081/ApiManagementSystem/project',
+        url: 'http://45.40.197.28:8081/ApiManagementSystem/project',
         data:{
             "projectName":name3,
             "address":1111,
@@ -105,7 +105,7 @@ function addp(){
                 $.ajax({
         			type: 'post',
         			dataType: 'json',
-        			url: 'http://localhost:8081/ApiManagementSystem/project/team',
+        			url: 'http://45.40.197.28:8081/ApiManagementSystem/project/team',
         			data: {
         				"projectId":back,
         				"teamId":tId,
@@ -147,7 +147,7 @@ function ajax(){
 	$.ajax({
         type: 'get',
        	dataType: 'json',
-        url: 'http://localhost:8081/ApiManagementSystem/project/team',
+        url: 'http://45.40.197.28:8081/ApiManagementSystem/project/team',
         data: {
         	"teamId":tId,
         },
@@ -243,7 +243,7 @@ function trash(projectName,projectId){      
                 $.ajax({
                     type: 'delete',
                     dataType: 'json',
-                    url: 'http://localhost:8081/ApiManagementSystem/project/'+projectId,
+                    url: 'http://45.40.197.28:8081/ApiManagementSystem/project/'+projectId,
                      contentType:"application/json;charset=utf-8",
                     success: function ( data ) {
                         location.reload(true);
@@ -338,7 +338,7 @@ function show1(projectId,projectName,description){
             $.ajax({
                 type: 'PUT',
                 dataType: 'json',
-                url: 'http://localhost:8081/ApiManagementSystem/project/'+projectId,
+                url: 'http://45.40.197.28:8081/ApiManagementSystem/project/'+projectId,
                  contentType:"application/json;charset=utf-8",
                 data: {
                     "projectId":projectId,
@@ -453,7 +453,7 @@ function addMember(){
             $.ajax({
                 type: 'get',
                 dataType: 'json',
-                url:'http://localhost:8081/ApiManagementSystem/user/userName',
+                url:'http://45.40.197.28:8081/ApiManagementSystem/user/userName',
                 data: {
                     "userName":memberName,
                 },
@@ -464,7 +464,7 @@ function addMember(){
                         $.ajax({
                             type: 'post',
                             dataType: 'json',
-                            url:'http://localhost:8081/ApiManagementSystem/message/invite',
+                            url:'http://45.40.197.28:8081/ApiManagementSystem/message/invite',
                             data: {
                             "userId":MemberId,
                             "teamId":tId,
@@ -509,7 +509,7 @@ function member(){
 	$.ajax({
 		type:"GET",
 		dataType:"json",
-		url:'http://localhost:8081/ApiManagementSystem/team/teamMember',
+		url:'http://45.40.197.28:8081/ApiManagementSystem/team/teamMember',
 		data: {
             "teamId":tId,
         },
@@ -579,7 +579,7 @@ function del(userId){
     $.ajax({
         type:"GET",
         dataType:"json",
-        url:'http://localhost:8081/ApiManagementSystem/team/teamMember',
+        url:'http://45.40.197.28:8081/ApiManagementSystem/team/teamMember',
         data: {
             "teamId":tId,
             "userId":userId,

@@ -7,7 +7,7 @@ function aaa(){
         $.ajax({
             type: 'GET',
             dataType: 'json',
-            url: 'http://localhost:8081/ApiManagementSystem/user',
+            url: 'http://45.40.197.28:8081/ApiManagementSystem/user',
             data: { 
                 userId:userId,
             },
@@ -102,7 +102,7 @@ function abc(){
             $.ajax({
             type: 'PUT',
             dataType: 'json',
-            url: 'http://localhost:8081/ApiManagementSystem/user/'+userId,
+            url: 'http://45.40.197.28:8081/ApiManagementSystem/user/'+userId,
             data: {
                 "userName":item[0].innerHTML,
                 "password":item[1].innerHTML,

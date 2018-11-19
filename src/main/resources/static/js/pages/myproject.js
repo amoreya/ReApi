@@ -81,7 +81,7 @@ function addp(){
     $.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'http://localhost:8081/ApiManagementSystem/project',
+        url: 'http://45.40.197.28:8081/ApiManagementSystem/project',
         data:{
             "userId":userId,
             "projectName":name3,
@@ -95,7 +95,7 @@ function addp(){
                  $.ajax({
                     type: 'post',
                     dataType: 'json',
-                    url: 'http://localhost:8081/ApiManagementSystem/project/user',
+                    url: 'http://45.40.197.28:8081/ApiManagementSystem/project/user',
                     data:{
                         "userId":userId,
                         "projectId":back,
@@ -128,7 +128,7 @@ function ajax(){
     var userId = localStorage.getItem('userId');
     $.ajax({
         type: 'get',
-        url: 'http://localhost:8081/ApiManagementSystem/project/user',
+        url: 'http://45.40.197.28:8081/ApiManagementSystem/project/user',
         data: {
             "userId":userId,
         },
@@ -227,7 +227,7 @@ function trash(projectName,projectId){      
                 $.ajax({
                     type: 'delete',
                     dataType: 'json',
-                    url: 'http://localhost:8081/ApiManagementSystem/project/'+projectId,
+                    url: 'http://45.40.197.28:8081/ApiManagementSystem/project/'+projectId,
                     success: function ( data ) {
                        ajax();
                     },
@@ -320,7 +320,7 @@ function show1(projectId,projectName,description){
             $.ajax({
                 type: 'PUT',
                 dataType: 'json',
-                url: 'http://localhost:8081/ApiManagementSystem/project/'+projectId,
+                url: 'http://45.40.197.28:8081/ApiManagementSystem/project/'+projectId,
                 data: {
                     "projectId":projectId,
                     "projectName":item[0].innerHTML,

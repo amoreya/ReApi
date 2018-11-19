@@ -52,7 +52,7 @@ function chuangjian(){
 	$.ajax({
 		type:"post",
 		dataType:"json",
-		url:"http://localhost:8081/ApiManagementSystem/interface",
+		url:"http://45.40.197.28:8081/ApiManagementSystem/interface",
 		data:{
 			"interfaceName":interfaceName,
 			"method":method,

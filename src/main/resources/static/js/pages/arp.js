@@ -7,7 +7,7 @@ function ajax(){
        type:"get",
         dataType:"json",
         // data:json,
-        url:"http://localhost:8081/ApiManagementSystem/interface/url/"+url,
+        url:"http://45.40.197.28:8081/ApiManagementSystem/interface/url/"+url,
          success:function(result){
             var backdata = result.data;
             if(result.status==200){

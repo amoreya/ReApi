@@ -15,7 +15,7 @@ function ajax(){
 	$.ajax({
 		type:"get",
 		dataType:'json',
-		url:"http://localhost:8081/ApiManagementSystem/interface/"+Id,
+		url:"http://45.40.197.28:8081/ApiManagementSystem/interface/"+Id,
 		success:function(result){
 			console.log(result);
 			if(result.status==200){
@@ -97,7 +97,7 @@ function xiugai(interfaceName,method,description,url,json,Id){
         processData: false,
 		type:"put",
 		dataType:"json",
-		url:"http://localhost:8081/ApiManagementSystem/interface/"+Id,
+		url:"http://45.40.197.28:8081/ApiManagementSystem/interface/"+Id,
 		data:{
 			"interfaceName":interfaceName,
 			"method":method,

@@ -25,7 +25,7 @@ function ajax(){
     $.ajax({
         type:"get",
         dataType:"json",
-        url:'http://localhost:8081/ApiManagementSystem/interface/projectInterface',
+        url:'http://45.40.197.28:8081/ApiManagementSystem/interface/projectInterface',
         data:{
             "projectId":projectId,
         },
@@ -96,7 +96,7 @@ function del_shop(interfaceId){//删除商品
     $.ajax({
         type:"delete",
         dataType:"json",
-        url:"http://localhost:8081/ApiManagementSystem/interface/"+interfaceId,
+        url:"http://45.40.197.28:8081/ApiManagementSystem/interface/"+interfaceId,
         success:function(result){
             var backdata = result.data
             if(result.status==200){
