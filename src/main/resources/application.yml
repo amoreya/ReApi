@@ -49,3 +49,8 @@ spring:
           db-type: mysql
       filters: stat,wall,slf4j
 
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/static/
+

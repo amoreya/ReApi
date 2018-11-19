@@ -24,14 +24,18 @@ spring:
     password:
     data: classpath:h2/data_prepare.sql
     schema: classpath:h2/schema.sql
-    
-freemarker:
-    #关闭缓存
-    cache: false
-    request-context-attribute: request
-    #模板加载的位置
-    template-loader-path: classpath:/static
-    #前缀
-    suffix: .html
-    #后缀
-    prefix: /html/
+#  mvc:
+#    static-path-pattern: /static/html/common/**
+#  resources:
+#    static-locations: classpath:/static/html/common/
+
+#freemarker:
+#    #关闭缓存
+#    cache: false
+#    request-context-attribute: request
+#    #模板加载的位置
+#    template-loader-path: classpath:/static/html/common/
+#    #前缀
+#    suffix: .html
+#    #后缀
+#    prefix: .html

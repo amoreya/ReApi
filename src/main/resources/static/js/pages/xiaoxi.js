@@ -26,7 +26,7 @@ function abc(){
      $.ajax({
         type:'get',
         dataType:'json',
-        url: 'http://localhost:8081/ApiManagementSystem/message/userMessage',
+        url: 'http://125.81.59.65:8081/ApiManagementSystem/message/userMessage',
         data: {
             "userId":userId,
         },
@@ -62,7 +62,7 @@ function add1(obj1,obj2){
     $.ajax({
         type: 'post',
         dataType: 'json',
-        url: 'http://localhost:8081/ApiManagementSystem/project/team',
+        url: 'http://125.81.59.65:8081/ApiManagementSystem/project/team',
         data: {
             "teamId":tId,
         },
@@ -171,7 +171,7 @@ function deletexiaoxi(){
     $.ajax({
         type: 'DELETE',
         dataType: 'json',
-        url: 'http://localhost:8081/ApiManagementSystem/project/team',
+        url: 'http://125.81.59.65:8081/ApiManagementSystem/project/team',
         data: {
             "teamId":tId,
         },
