@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50723
 Source Host           : localhost:3306
-Source Database       : apimocksystem
+Source Database       : reapimocksystem
 
 Target Server Type    : MYSQL
 Target Server Version : 50723
 File Encoding         : 65001
 
-Date: 2018-11-17 13:29:17
+Date: 2018-11-19 16:22:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `interface_info` (
   `project_id` int(10) unsigned NOT NULL,
   `del_flag` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`interface_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for message
@@ -42,6 +42,7 @@ CREATE TABLE `message` (
   `read_flag` tinyint(4) DEFAULT '0',
   `send_user_id` int(10) unsigned NOT NULL,
   `team_id` int(10) unsigned NOT NULL,
+  `user_name` varchar(255) NOT NULL,
   PRIMARY KEY (`message_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -55,9 +56,8 @@ CREATE TABLE `project_info` (
   `description` text,
   `project_address` varchar(100) DEFAULT NULL,
   `del_flag` tinyint(4) DEFAULT '0',
-  PRIMARY KEY (`project_id`),
-  UNIQUE KEY `project_name` (`project_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`project_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for project_member
@@ -104,7 +104,7 @@ CREATE TABLE `team_info` (
   `del_flag` tinyint(4) DEFAULT '0',
   `create_user_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`team_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for team_member_info
@@ -117,7 +117,7 @@ CREATE TABLE `team_member_info` (
   `join_time` datetime DEFAULT NULL,
   `del_flag` tinyint(4) DEFAULT '0',
   PRIMARY KEY (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for user_info
