@@ -9,7 +9,6 @@ import java.util.List;
 @Repository
 public interface MessageMapper {
 
-
     boolean insertMessage(Message message);
 
     List<Message> selectMessages(int userId);

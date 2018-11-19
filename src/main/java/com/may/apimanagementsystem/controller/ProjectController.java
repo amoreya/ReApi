@@ -29,27 +29,27 @@ public class ProjectController {
 
 
     @PostMapping
-    public ResponseEntity<Project> addProject(Project project){
+    public ResponseEntity<Project> addProject(Project project) {
         projectService.addProject(project);
-        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,project);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, project);
     }
 
     @DeleteMapping("{projectId}")
-    public ResponseEntity<Project> deleteProject(@PathVariable int projectId){
+    public ResponseEntity<Project> deleteProject(@PathVariable int projectId) {
         projectService.removeProject(projectId);
-        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, null);
     }
 
     @PutMapping("{projectId}")
-    public ResponseEntity<Project> updateProject(@PathVariable int projectId, Project project){
+    public ResponseEntity<Project> updateProject(@PathVariable int projectId, Project project) {
         projectService.updateProject(project);
-        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,null);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, null);
     }
 
     @GetMapping("{projectId}")
-    public ResponseEntity<Project> findProjectByProjectId(@PathVariable int projectId,Project project){
+    public ResponseEntity<Project> findProjectByProjectId(@PathVariable int projectId, Project project) {
         projectService.getProjectByProjectId(projectId);
-        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS,project);
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, project);
     }
 
 
@@ -59,11 +59,13 @@ public class ProjectController {
         teamProjectServise.removeTeamProject(projectId);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
+
     @GetMapping("team")
     public ResponseEntity<List<Project>> selectTeamproject(int teamId) {
         List<Project> projects = teamProjectServise.selectTeamProjectByTeamId(teamId);
         return new ResponseEntity<>(200, SUCCESS, projects);
     }
+
     @PostMapping("team")
     public ResponseEntity<TeamProject> createTeamProject(TeamProject teamProject) {
         teamProjectServise.addTeamProject(teamProject);
@@ -72,22 +74,22 @@ public class ProjectController {
 
     /*个人项目*/
     @DeleteMapping("user/{projectId}")
-    public ResponseEntity<ProjectUserRef> deleteUserproject(@PathVariable int projectId){
+    public ResponseEntity<ProjectUserRef> deleteUserproject(@PathVariable int projectId) {
         userProjectServise.removeUserProject(projectId);
         return new ResponseEntity<>(200, SUCCESS, null);
     }
+
     @GetMapping("user")
-    public ResponseEntity<List<Project>> selectUserproject(int userId){
-        List<Project> projects =userProjectServise.selectUserProjectByUserId(userId);
+    public ResponseEntity<List<Project>> selectUserproject(int userId) {
+        List<Project> projects = userProjectServise.selectUserProjectByUserId(userId);
         return new ResponseEntity<>(200, SUCCESS, projects);
     }
 
     @PostMapping("user")
     public ResponseEntity<ProjectUserRef> createUserProject(ProjectUserRef projectUserRef) {
-       userProjectServise.addUserProject(projectUserRef);
+        userProjectServise.addUserProject(projectUserRef);
         return new ResponseEntity<>(200, SUCCESS, projectUserRef);
     }
-
 
 
 }

@@ -10,7 +10,11 @@ import java.util.List;
 
 @Repository
 public interface TeamProjectMapper {
+
     boolean deleteTeamProject(int projectId);
+
     boolean insertTeamProject(TeamProject teamProject);
+
     List<Project> selectTeamProject(@Param("teamId") int teamId);
+
 }

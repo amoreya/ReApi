@@ -28,17 +28,15 @@ public class InterfaceController {
     }
 
 
-  @GetMapping("url/{url}")
-  public ResponseEntity<String> everyInterface(@PathVariable("url") String url){
-       Interfaces interfaces=interfaceService.getInterface(url);
-       String json="{"+" \"message\"："+SUCCESS+",\n"+"\"status\"："+ReturnCode.SUCCESS_CODE+",\n"+"\"data\"："+"["+"\n"+"{"+"\n"+interfaceService.replaceBlank(interfaces.getJson())+"\n"+"}"+"\n"+"]"+"\n}";
-      return new ResponseEntity<>(ReturnCode.SUCCESS_CODE,SUCCESS ,json);
-  }
-
-
+    @GetMapping("url/{url}")
+    public ResponseEntity<String> everyInterface(@PathVariable("url") String url) {
+        Interfaces interfaces = interfaceService.getInterface(url);
+        String json = "{" + " \"message\"：" + SUCCESS + ",\n" + "\"status\"：" + ReturnCode.SUCCESS_CODE + ",\n" + "\"data\"：" + "[" + "\n" + "{" + "\n" + interfaceService.replaceBlank(interfaces.getJson()) + "\n" + "}" + "\n" + "]" + "\n}";
+        return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, json);
+    }
 
     @GetMapping("projectInterface")
-    public ResponseEntity<List<Interfaces>> showInterface(int projectId)  {
+    public ResponseEntity<List<Interfaces>> showInterface(int projectId) {
         List<Interfaces> interfaces = null;
         interfaces = interfaceService.getInterfaces(projectId);
         return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, interfaces);
@@ -51,7 +49,7 @@ public class InterfaceController {
     }
 
     @PutMapping("{interfaceId}")
-    public ResponseEntity<Interfaces> updateInterface(@PathVariable int interfaceId,Interfaces interfaces) {
+    public ResponseEntity<Interfaces> updateInterface(@PathVariable int interfaceId, Interfaces interfaces) {
         System.out.println(interfaces.getInterfaceName());
         System.out.println(interfaces.getJson());
         System.out.println(interfaces.getMethod());
@@ -62,7 +60,7 @@ public class InterfaceController {
 
     @GetMapping("{interfaceId}")
     public ResponseEntity<Interfaces> getInterfaceByInterfaceId(@PathVariable int interfaceId) {
-        Interfaces interfaces= interfaceService.getInterfaceByInterfaceId(interfaceId);
+        Interfaces interfaces = interfaceService.getInterfaceByInterfaceId(interfaceId);
         return new ResponseEntity<>(ReturnCode.SUCCESS_CODE, SUCCESS, interfaces);
     }
 

@@ -76,26 +76,5 @@ public class TeamController {
         return new ResponseEntity<>(200, SUCCESS, null);
     }
 
-//    /*团队项目*/
-//
-//    @DeleteMapping("teamProject/{projectId}")
-//    public ResponseEntity<TeamProject> deleteTeamproject(@PathVariable int projectId) {
-//        System.out.println(projectId);
-//        teamProjectServise.removeTeamProject(projectId);
-//        return new ResponseEntity<>(200, SUCCESS, null);
-//    }
-//
-//    @GetMapping("teamProject")
-//    public ResponseEntity<List<Project>> selectTeamproject(int teamId) {
-//        List<Project> projects = teamProjectServise.selectTeamProjectByTeamId(teamId);
-//        return new ResponseEntity<>(200, SUCCESS, projects);
-//    }
-//
-//    @PostMapping("teamProject")
-//    public ResponseEntity<TeamProject> createTeamProject(TeamProject teamProject) {
-//        teamProjectServise.addTeamProject(teamProject);
-//        return new ResponseEntity<>(200, SUCCESS, teamProject);
-//    }
-
 
 }
