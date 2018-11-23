@@ -15,9 +15,7 @@ server:
 mybatis:
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
-#  configuration:
-#    cache-enabled: true
-#    call-setters-on-nulls: true
+
 
 spring:
   datasource:
